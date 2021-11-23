@@ -2,15 +2,24 @@ import {
   ActionReducer,
   ActionReducerMap,
   createFeatureSelector,
+  createReducer,
   createSelector,
-  MetaReducer
+  MetaReducer,
+  on
 } from '@ngrx/store';
+import { AuthActions } from '../action-types';
+import { User } from '../model/user.model';
 
-export interface AppState {
-
+export interface AuthState {
+  user:User;
 }
 
-export const reducers: ActionReducerMap<AppState> = {
-
+export const initialAuthState:AuthState = {
+  user: undefined
 };
 
+export const authReducer = createReducer(initialAuthState, on(AuthActions.login, (state, action) => {
+  return {
+    user: action.user
+  }
+}));
