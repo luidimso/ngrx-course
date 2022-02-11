@@ -17,3 +17,5 @@ export const selectAdvancedCourses = createSelector(selectAllCourses, courses =>
 export const selectPromoTotal = createSelector(selectAllCourses, courses => courses.filter((course) => {
     return course.promo;
 }).length);
+
+export const areCoursesLoaded = createSelector(selectCoursesState, state => state.allCoursesLoaded);
